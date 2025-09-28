@@ -25,24 +25,55 @@
     nav {
       margin-top: 1rem;
     }
-    nav a {
+    nav button {
       color: #fff;
-      text-decoration: none;
+      background: none;
+      border: none;
       margin: 0 1.5rem;
       font-weight: bold;
       font-size: 1.1rem;
+      cursor: pointer;
       transition: color 0.2s;
+      padding: 0.5rem 1rem;
+      outline: none;
+      border-radius: 25px;
     }
-    nav a:hover {
+    nav button.active {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 0 10px #fff2;
+    }
+    nav button:hover:not(.active) {
       color: #bbb;
+      background: #222;
     }
-    section {
+    main {
       max-width: 700px;
       margin: 2rem auto;
-      background: #111;
-      border-radius: 8px;
-      box-shadow: 0 0 16px rgba(255,255,255,0.05);
-      padding: 2rem;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-box {
+      background: #fff;
+      color: #111;
+      border-radius: 25px;
+      box-shadow: 0 0 32px rgba(255,255,255,0.10);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 600px;
+      min-height: 320px;
+      transition: box-shadow 0.2s;
+      display: none;
+      animation: fadeIn 0.7s;
+    }
+    .page-box.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
     }
     .cta {
       text-align: center;
@@ -50,21 +81,38 @@
     }
     .cta a {
       display: inline-block;
-      background: #fff;
-      color: #111;
+      background: #111;
+      color: #fff;
       padding: 1rem 2rem;
-      border-radius: 5px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
       letter-spacing: 1px;
       border: none;
       transition: background 0.2s, color 0.2s;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     .cta a:hover {
       background: #222;
       color: #fff;
-      border: 1px solid #fff;
+      border: 1px solid #222;
+    }
+    ul.service-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+    }
+    ul.service-list li {
+      margin-bottom: 1.2rem;
+      font-size: 1.15rem;
+    }
+    .contact-details {
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+    .contact-details span {
+      display: block;
+      margin-bottom: 1.2rem;
     }
     footer {
       text-align: center;
@@ -81,32 +129,95 @@
   <header>
     <h1>GodWilled Barbers</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <button class="active" id="nav-home" onclick="showPage('home')">Home</button>
+      <button id="nav-services" onclick="showPage('services')">Services</button>
+      <button id="nav-about" onclick="showPage('about')">About</button>
+      <button id="nav-contact" onclick="showPage('contact')">Contact</button>
     </nav>
   </header>
-  <section>
-    <h2>Welcome to GodWilled Barbers</h2>
-    <p>
-      Experience top-tier grooming and classic barbering in a stylish, relaxing environment. Our skilled barbers are dedicated to giving you the look you want, whether it’s a modern style or a timeless cut.
-    </p>
-    <h3>Our Services</h3>
-    <ul>
-      <li>Classic Haircuts</li>
-      <li>Hot Towel Shaves</li>
-      <li>Beard Trims & Styling</li>
-      <li>Kids’ Cuts</li>
-      <li>Hair Styling & Advice</li>
-      </li>Fara EDI (fara evrei)</li>
-    </ul>
-    <div class="cta">
-      <a href="https://calendly.com/godwilledbarbers/30min" target="_blank">Book an Appointment</a>
+  <main>
+    <!-- Home Page -->
+    <div id="page-home" class="page-box active">
+      <h2>Book Your Appointment</h2>
+      <p>
+        Welcome to <b>GodWilled Barbers</b>! Experience top-tier grooming and classic barbering in a stylish, relaxing environment. Our skilled barbers are dedicated to giving you the look you want, whether it’s a modern style or a timeless cut.
+      </p>
+      <div class="cta">
+        <a href="https://calendly.com/godwilledbarbers/30min" target="_blank">Book an Appointment</a>
+      </div>
     </div>
-  </section>
+    <!-- Services Page -->
+    <div id="page-services" class="page-box">
+      <h2>Our Services & Prices</h2>
+      <ul class="service-list">
+        <li>
+          <strong>Classic Men's Haircut</strong> - $20
+          <br><span style="font-size:0.97em;">Traditional and modern styles tailored for you.</span>
+        </li>
+        <li>
+          <strong>Beard Trim & Shaping</strong> - $10
+          <br><span style="font-size:0.97em;">Expert beard shaping and line-up.</span>
+        </li>
+        <li>
+          <strong>Hot Towel Shave</strong> - $15
+          <br><span style="font-size:0.97em;">Luxurious, relaxing shave experience.</span>
+        </li>
+        <li>
+          <strong>Kids' Haircut</strong> - $15
+          <br><span style="font-size:0.97em;">Fun, friendly and stylish cuts for children.</span>
+        </li>
+        <li>
+          <strong>Full Grooming Package</strong> - $35
+          <br><span style="font-size:0.97em;">Haircut, beard trim, and hot towel shave combo.</span>
+        </li>
+      </ul>
+    </div>
+    <!-- About Page -->
+    <div id="page-about" class="page-box">
+      <h2>About GodWilled Barbers</h2>
+      <p>
+        GodWilled Barbers is a proud family business founded by two brothers with a passion for classic barbering and modern style. We believe in great service, community, and making every customer feel at home.
+      </p>
+      <p>
+        Our mission is to deliver the best grooming experience in a welcoming atmosphere.
+      </p>
+    </div>
+    <!-- Contact Page -->
+    <div id="page-contact" class="page-box">
+      <h2>Contact Us</h2>
+      <div class="contact-details">
+        <span>
+          <b>Email:</b> godwilledbarbers@gmail.com
+        </span>
+        <span>
+          <b>Phone:</b> +1-555-123-4567
+        </span>
+        <span>
+          <b>Location:</b> 123 Barber Lane, YourCity
+        </span>
+      </div>
+      <p>
+        Reach out for questions, feedback, or to schedule your next visit!
+      </p>
+    </div>
+  </main>
   <footer>
     &copy; 2025 GodWilled Barbers. All rights reserved.
   </footer>
+  <script>
+    // Navigation logic
+    function showPage(page) {
+      // Hide all pages
+      document.querySelectorAll('.page-box').forEach(box => box.classList.remove('active'));
+      // Remove active from all nav buttons
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      // Show selected page
+      document.getElementById('page-' + page).classList.add('active');
+      // Mark nav button as active
+      document.getElementById('nav-' + page).classList.add('active');
+    }
+    // Default page is home
+    showPage('home');
+  </script>
 </body>
 </html>
