@@ -48,7 +48,7 @@
       text-align: center;
       margin-top: 2rem;
     }
-    .cta a, .cta button {
+    .cta button {
       display: inline-block;
       background: #fff;
       color: #111;
@@ -62,7 +62,7 @@
       transition: background 0.2s, color 0.2s;
       font-size: 1rem;
     }
-    .cta a:hover, .cta button:hover {
+    .cta button:hover {
       background: #222;
       color: #fff;
       border: 1px solid #fff;
@@ -117,6 +117,7 @@
       border-radius: 4px;
       text-align: center;
       margin-top: 1.5rem;
+      display: none;
     }
     footer {
       text-align: center;
@@ -156,7 +157,7 @@
       <button onclick="document.getElementById('appointmentForm').style.display='block';window.scrollTo(0,document.body.scrollHeight);">Book an Appointment</button>
     </div>
     <form id="appointmentForm" class="appointment-form"
-      action="https://formspree.io/f/mqkrvnlq"
+      action="https://formspree.io/f/mnngjovp"
       method="POST">
       <h3>Book Your Appointment</h3>
       <label for="name">Name</label>
@@ -166,7 +167,7 @@
       <input type="email" name="email" id="email" required>
 
       <label for="date">Date</label>
-      <input type="date" name="date" id="date" required min="<?php echo date('Y-m-d'); ?>">
+      <input type="date" name="date" id="date" required min="" max="">
 
       <label for="time">Time</label>
       <select name="time" id="time" required>
@@ -186,7 +187,7 @@
       </select>
 
       <button type="submit">Send Appointment Request</button>
-      <div class="success-message" id="successMessage" style="display:none;">
+      <div class="success-message" id="successMessage">
         Thank you! Your appointment request has been sent.
       </div>
     </form>
@@ -195,10 +196,19 @@
     &copy; 2025 GodWilled Barbers. All rights reserved.
   </footer>
   <script>
-    // Show the success message after form submission
+    // Set today's date as min for booking
+    document.addEventListener("DOMContentLoaded", function() {
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementById("date").setAttribute("min", today);
+      // Optionally, set a max date (e.g., 3 months ahead)
+      var maxDate = new Date();
+      maxDate.setMonth(maxDate.getMonth() + 3);
+      document.getElementById("date").setAttribute("max", maxDate.toISOString().split('T')[0]);
+    });
+
+    // AJAX form submission to Formspree
     document.getElementById('appointmentForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Simple AJAX to Formspree
       var form = e.target;
       var data = new FormData(form);
 
