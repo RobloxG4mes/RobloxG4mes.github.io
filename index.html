@@ -48,7 +48,7 @@
       text-align: center;
       margin-top: 2rem;
     }
-    .cta button {
+    .cta a {
       display: inline-block;
       background: #fff;
       color: #111;
@@ -58,66 +58,13 @@
       font-weight: bold;
       letter-spacing: 1px;
       border: none;
-      cursor: pointer;
       transition: background 0.2s, color 0.2s;
       font-size: 1rem;
     }
-    .cta button:hover {
+    .cta a:hover {
       background: #222;
       color: #fff;
       border: 1px solid #fff;
-    }
-    .appointment-form {
-      display: none;
-      margin: 2rem auto;
-      background: #222;
-      border-radius: 8px;
-      padding: 2rem;
-      max-width: 400px;
-      box-shadow: 0 0 16px rgba(255,255,255,0.07);
-    }
-    .appointment-form input,
-    .appointment-form select {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1.2rem;
-      border: none;
-      border-radius: 4px;
-      background: #111;
-      color: #fff;
-      font-size: 1rem;
-    }
-    .appointment-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-      color: #fff;
-    }
-    .appointment-form button {
-      width: 100%;
-      background: #fff;
-      color: #111;
-      font-size: 1rem;
-      border-radius: 4px;
-      border: none;
-      padding: 0.7rem 0;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .appointment-form button:hover {
-      background: #222;
-      color: #fff;
-      border: 1px solid #fff;
-    }
-    .success-message {
-      background: #111;
-      color: #0f0;
-      padding: 1rem;
-      border-radius: 4px;
-      text-align: center;
-      margin-top: 1.5rem;
-      display: none;
     }
     footer {
       text-align: center;
@@ -154,83 +101,11 @@
       <li>Hair Styling & Advice</li>
     </ul>
     <div class="cta">
-      <button onclick="document.getElementById('appointmentForm').style.display='block';window.scrollTo(0,document.body.scrollHeight);">Book an Appointment</button>
+      <a href="https://calendly.com/godwilledbarbers/30min" target="_blank">Book an Appointment</a>
     </div>
-    <form id="appointmentForm" class="appointment-form"
-      action="https://formspree.io/f/mnngjovp"
-      method="POST">
-      <h3>Book Your Appointment</h3>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" required>
-
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" required>
-
-      <label for="date">Date</label>
-      <input type="date" name="date" id="date" required min="" max="">
-
-      <label for="time">Time</label>
-      <select name="time" id="time" required>
-        <option value="">Select a time</option>
-        <option value="09:00">09:00</option>
-        <option value="10:00">10:00</option>
-        <option value="11:00">11:00</option>
-        <option value="12:00">12:00</option>
-        <option value="13:00">13:00</option>
-        <option value="14:00">14:00</option>
-        <option value="15:00">15:00</option>
-        <option value="16:00">16:00</option>
-        <option value="17:00">17:00</option>
-        <option value="18:00">18:00</option>
-        <option value="19:00">19:00</option>
-        <option value="20:00">20:00</option>
-      </select>
-
-      <button type="submit">Send Appointment Request</button>
-      <div class="success-message" id="successMessage">
-        Thank you! Your appointment request has been sent.
-      </div>
-    </form>
   </section>
   <footer>
     &copy; 2025 GodWilled Barbers. All rights reserved.
   </footer>
-  <script>
-    // Set today's date as min for booking
-    document.addEventListener("DOMContentLoaded", function() {
-      var today = new Date().toISOString().split('T')[0];
-      document.getElementById("date").setAttribute("min", today);
-      // Optionally, set a max date (e.g., 3 months ahead)
-      var maxDate = new Date();
-      maxDate.setMonth(maxDate.getMonth() + 3);
-      document.getElementById("date").setAttribute("max", maxDate.toISOString().split('T')[0]);
-    });
-
-    // AJAX form submission to Formspree
-    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = e.target;
-      var data = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(function(response) {
-        if (response.ok) {
-          form.reset();
-          document.getElementById('successMessage').style.display = 'block';
-        } else {
-          response.json().then(function(data) {
-            alert(data.error || "Oops! There was a problem.");
-          });
-        }
-      }).catch(function(error) {
-        alert("Oops! There was a problem.");
-      });
-    });
-  </script>
 </body>
 </html>
