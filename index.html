@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>GodWilled Barbers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="Logo.png">
   <style>
     body {
       margin: 0;
@@ -17,17 +18,17 @@
       text-align: center;
       border-bottom: 2px solid #fff;
     }
+    .logo-img {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 120px;
+      height: auto;
+      border-radius: 20px;
+    }
     h1 {
       font-size: 2.5rem;
       margin: 0;
       letter-spacing: 2px;
-    }
-    .logo-img {
-      display: block;
-      margin: 20px auto 0 auto;
-      width: 120px;
-      height: auto;
-      border-radius: 20px;
     }
     nav {
       margin-top: 1rem;
@@ -134,8 +135,8 @@
 </head>
 <body>
   <header>
-    <h1> Barbers</h1>
     <img src="Logo.png" alt="GodWilled Barbers Logo" class="logo-img">
+    <h1>GodWilled Barbers</h1>
     <nav>
       <button class="active" id="nav-home" onclick="showPage('home')">Home</button>
       <button id="nav-services" onclick="showPage('services')">Services</button>
