@@ -126,6 +126,7 @@
     .social-links {
       margin-top: 2rem;
       margin-bottom: 0.5rem;
+      /* ensure left align with other contact info */
     }
     .social-label {
       font-weight: bold;
@@ -140,14 +141,15 @@
       margin-bottom: 8px;
     }
     .social-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       box-shadow: 0 2px 8px #2222;
       background: #fff;
       transition: box-shadow 0.2s, transform 0.2s;
       display: inline-block;
-      object-fit: cover;
+      object-fit: contain;
+      padding: 3px;
     }
     .social-icon:hover {
       box-shadow: 0 0 16px #bbb;
